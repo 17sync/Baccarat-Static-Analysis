@@ -19,7 +19,7 @@ The `main` branch is preserved as the original baseline. It is not modified duri
 | Approximate Python LOC | ~924 |
 | Number of Python Files | 6 |
 | Existing Tests | No |
-| Initial Pylint Score | |
+| Initial Pylint Score | 9.17/10 |
 | Why is this project suitable? | The project is primarily Python, contains 6 meaningful Python source files and approximately 900+ lines of code, includes multiple classes and functions, and implements an understandable Baccarat game with separate modules for cards, hands, players, rules, CLI, and simulation. It can be executed locally and provides sufficient code structure and logic for meaningful static analysis. |
 
 ## Final Selection Checklist
