@@ -32,6 +32,18 @@ This branch contains the changes made as part of the assignment, including:
 
 Keeping the two branches separate makes it possible to compare the modified code with the original implementation and preserve the original project as an identifiable baseline.
 
+## Analysis Documentation
+
+Detailed analysis documentation can be found in the [`docs/`](docs/) directory.
+```
+docs/
+    ├── baseline.md             original state
+    ├── static-analysis.md      methodology/tools
+    ├── findings.md             individual findings
+    └── refactoring.md          before/after results
+```
+Deliverables for the actual assignment can be found in the [`deliverables/`](deliverables/) directory.
+
 ## Project Structure
 
 ```text
