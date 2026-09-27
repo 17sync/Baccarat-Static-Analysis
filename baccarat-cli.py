@@ -1,5 +1,7 @@
+"""Interactive command line interface for Baccarat Punto Banco."""
+
 import time
-from rules import Table
+from rules import GameError, Table
 
 class Cli:
     """Command line interface of the game. Only interacts with Table object in
@@ -50,23 +52,20 @@ Options:
 
     def add_player(self):
         """Adds a new player to the game."""
-        balance_input = input('Initial balance for the new player or <c> to cancel: ')
-        if balance_input.lower() in ['c', 'cancel']:
-            return
-        try:
-            # Try to convert to int but don't capture error
+        while True:
+            balance_input = input('Initial balance for the new player or <c> to cancel: ')
+            if balance_input.lower() in ['c', 'cancel']:
+                return
             try:
-                balance_input = int(balance_input)
-            except:
-                pass
-            self._game.add_player(balance_input)
-            print()
-            print(f'Player added with {balance_input} balance.')
-            input('Press <enter> to continue...')
-        except (ValueError, TypeError) as error:
-            print()
-            print(error)
-            self.add_player()
+                balance = int(balance_input)
+                self._game.add_player(balance)
+                print()
+                print(f'Player added with {balance} balance.')
+                input('Press <enter> to continue...')
+                return
+            except (ValueError, TypeError) as error:
+                print()
+                print(error)
 
     def place_bets(self):
         """Loops through out all the available player to place the individual
@@ -101,17 +100,15 @@ Options:
             print()
             return
         try:
-            # Try to convert to int but don't capture error
-            try:
-                amount_input = int(amount_input)
-            except:
-                pass
-            self._game.bet(player_i, hands.get(hand_input.lower()), amount_input)
+            amount = int(amount_input)
+            hand = hands.get(hand_input.lower())
+            if hand is None:
+                raise ValueError('Select punto, banco, or tie.')
+            self._game.bet(player_i, hand, amount)
             print()
         except (ValueError, TypeError, GameError) as error:
             print()
             print(error)
-            self.bet(player_i)
 
     def deal_hands(self):
         """Deals both punto and banco hands and proceeds with the game itself.
@@ -123,8 +120,7 @@ Options:
             """Returns a string with the game result to be printed as output."""
             if self._game.game_result() != 'tie':
                 return self._game.game_result().title() + ' win'
-            else:
-                return self._game.game_result().title()
+            return self._game.game_result().title()
 
         def print_hands():
             print(f'Punto hand: {self._game.punto_cards}.')
@@ -180,19 +176,14 @@ Options:
         if shoe_input.lower() in ['c', 'cancel']:
             return
         try:
-            # Try to convert to int but don't capture error
-            try:
-                shoe_input = int(shoe_input)
-            except:
-                pass
-            self._game.create_shoe(shoe_input)
+            decks = int(shoe_input)
+            self._game.create_shoe(decks)
             print()
-            print(f'A new shoe with {int(shoe_input)} deck(s) will be used on the game.')
+            print(f'A new shoe with {decks} deck(s) will be used on the game.')
             input('Press <enter> to continue...')
         except (ValueError, TypeError) as error:
             print()
             print(error)
-            self.create_shoe()
 
     def quit(self):
         """Quits the game uppon confirmation from the user."""
