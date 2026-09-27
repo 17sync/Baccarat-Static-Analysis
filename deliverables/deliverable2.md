@@ -336,7 +336,3 @@ The score improvement is consistent with fewer static-analysis findings, but it 
 ## 10. Git progression
 
 The repository already contains a sequence of baseline and analysis-documentation commits on `static-analysis`; the original `main` source remains the comparison reference. The assignment requires meaningful commits for the new refactoring and report as well. The current source, test, and report work is organized into separate logical changes before submission. Use `git log --oneline` to inspect the resulting history.
-
-## 11. Limitations and next steps
-
-This report verifies the seven behaviors covered by the focused suite and records Pylint's complete outputs. It does not establish full Baccarat rule correctness across all possible hand combinations. The next high-value verification is table-driven testing of `Banco.draw_third` across banker totals and player third-card values.
