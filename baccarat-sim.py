@@ -1,6 +1,13 @@
+"""Run batch simulations and write hand-level results to a text file."""
+
 import datetime
 import argparse
 from rules import Game
+
+def output_filename(decks, shoes):
+    """Return the timestamped filename for a simulation report."""
+    timestamp = datetime.datetime.now().strftime('%d%m%y%H%M%S')
+    return f'{decks}_{shoes}_{timestamp}.txt'
 
 def hand_values(hand):
     """Creates a list of strings with the values of a hand."""
@@ -12,7 +19,15 @@ def hand_values(hand):
             values.append('x')
     return values
 
+def write_totals(sim_file, total_wins, game_count):
+    """Write final winner counts and percentages to the simulation report."""
+    sim_file.write('\nTotal results:\n')
+    for winner, count in total_wins.items():
+        percentage = round((count / game_count) * 100, 4)
+        sim_file.write(f'{winner.title()}:\t{count}\t({percentage}%)\n')
+
 def main():
+    """Parse simulation options, run shoes, and write summary statistics."""
 
     # Counters
     shoe_count = 0
@@ -32,11 +47,10 @@ def main():
     sim.create_shoe(args.decks)
 
     # Set file name
-    now = datetime.datetime.now()
-    file_name = f'{args.decks}_{args.shoes}_{now.strftime("%d%m%y%H%M%S")}.txt'
+    file_name = output_filename(args.decks, args.shoes)
 
     # Open file
-    with open(file_name, 'w') as sim_file:
+    with open(file_name, 'w', encoding='utf-8') as sim_file:
 
         # Run through num_shoes
         for i in range(args.shoes):
@@ -71,15 +85,11 @@ def main():
 
             # Shoe results
             sim_file.write('\nShoe results:\n')
-            for win in shoe_wins:
-                sim_file.write(f'{win.title()}:\t{shoe_wins[win]}\n')
+            for win, count in shoe_wins.items():
+                sim_file.write(f'{win.title()}:\t{count}\n')
             sim.create_shoe(args.decks)
 
-        # Total results
-        sim_file.write('\nTotal results:\n')
-        for win in total_wins:
-            sim_file.write(f'{win.title()}:\t{total_wins[win]}\t\
-({round((total_wins[win]/game_count) * 100, 4)}%)\n')
+        write_totals(sim_file, total_wins, game_count)
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,12 @@
+Welcome to Baccarat Punto Banco
+
+Options:
+1: Status
+2: Add player
+3: Place bets
+4: Deal cards
+5: Change shoe
+0: Quit
+
+Your selection: 
+Do you really wish to quit? <y/n>: 
