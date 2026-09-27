@@ -1,3 +1,5 @@
+"""Playing cards and shuffled card shoes for Baccarat."""
+
 import random
 
 SUITS = ['hearts', 'spades', 'clubs', 'diamonds']
@@ -54,11 +56,7 @@ class Card:
         """Return the representation string as if the object was
         called when creating a new instance.
         """
-        if isinstance(self._rank, str):
-            return f'Card(\'{self._rank}\', \'{self._suit}\')'
-        elif isinstance(self._rank, int):
-            return f'Card({self._rank}, \'{self._suit}\')'
-            
+        return f'Card({self._rank!r}, {self._suit!r})'
 
     def __str__(self):
         """Return a string with the rank and suit of the card."""
@@ -83,7 +81,7 @@ class Shoe:
     def __init__(self, num_decks):
         if not isinstance(num_decks, int):
             raise TypeError('Number of decks must be an integer.')
-        elif num_decks < 1:
+        if num_decks < 1:
             raise ValueError('Number of decks must be positive.')
         self._num_decks = num_decks
         self._cards = []
@@ -106,13 +104,17 @@ class Shoe:
 
     def add_decks(self, num_decks=None):
         """Refils the shoe with decks. Uses self.num_decks value if empty."""
-        if not num_decks:
+        if num_decks is None:
             num_decks = self._num_decks
+        if not isinstance(num_decks, int):
+            raise TypeError('Number of decks must be an integer.')
+        if num_decks < 1:
+            raise ValueError('Number of decks must be positive.')
 
-        for i in range(num_decks):
+        for _ in range(num_decks):
             for suit in SUITS:
                 for rank in RANKS:
-                   self._cards.append(Card(rank, suit)) 
+                    self._cards.append(Card(rank, suit))
         random.shuffle(self._cards)
 
     def draw_cards(self, num_cards):
@@ -126,7 +128,11 @@ class Shoe:
             cards_drawn: list, cards drawn from shoe.
         """
         cards_drawn = []
-        for i in range(num_cards):
+        if not isinstance(num_cards, int):
+            raise TypeError('Number of cards must be an integer.')
+        if num_cards < 0:
+            raise ValueError('Number of cards cannot be negative.')
+        for _ in range(num_cards):
             if len(self._cards) == 0:
                 self.add_decks()
             cards_drawn.append(self._cards.pop())

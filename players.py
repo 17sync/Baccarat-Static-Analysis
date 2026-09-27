@@ -1,3 +1,11 @@
+"""Player balances, bets, and settlement for Baccarat."""
+
+PUNTO_PAYOUT = 1
+BANCO_PAYOUT_NUMERATOR = 95
+BANCO_PAYOUT_DENOMINATOR = 100
+TIE_PAYOUT = 8
+
+
 class Player:
     """A player of baccarat game. Create several instances to have multiplayer.
 
@@ -19,7 +27,7 @@ class Player:
     def __init__(self, balance):
         if not isinstance(balance, int):
             raise TypeError('Balance must be an integer.')
-        elif balance < 1:
+        if balance < 1:
             raise ValueError('Balance must be positive.')
         self._pid = Player._pid
         self._balance = balance
@@ -80,7 +88,8 @@ class Player:
         Returns:
             bol, True if the bet is valid, False otherwise.
         """
-        if self._hand_bet not in ['punto', 'banco', 'tie'] or self._amount_bet <= 0:
+        if (self._hand_bet not in ['punto', 'banco', 'tie']
+                or self._amount_bet <= 0):
             return False
         return True
 
@@ -93,11 +102,12 @@ class Player:
         """
         if self.is_valid_bet():
             if self._hand_bet == 'punto':
-                self._balance += int(self._amount_bet * 1)
+                self._balance += self._amount_bet * PUNTO_PAYOUT
             elif self._hand_bet == 'banco':
-                self._balance += int(self._amount_bet * 0.95)
+                self._balance += (self._amount_bet * BANCO_PAYOUT_NUMERATOR
+                                  // BANCO_PAYOUT_DENOMINATOR)
             elif self._hand_bet == 'tie':
-                self._balance += int(self._amount_bet * 8)
+                self._balance += self._amount_bet * TIE_PAYOUT
             self._hand_bet = None
             self._amount_bet = 0
         else:
@@ -128,7 +138,8 @@ class Player:
         """
         bet = f'Hand bet: {self._hand_bet}, Amount bet: {self._amount_bet}'
         no_bet = 'No bet'
-        return f'Player: {self._pid}, Balance: {self._balance}, {bet if self.is_valid_bet() else no_bet}.'
+        status = bet if self.is_valid_bet() else no_bet
+        return f'Player: {self._pid}, Balance: {self._balance}, {status}.'
 
 class InvalidBet(Exception):
-    pass
+    """Raised when settlement is attempted without a valid wager."""

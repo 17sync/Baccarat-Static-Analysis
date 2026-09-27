@@ -1,3 +1,5 @@
+"""Baccarat hands and third-card drawing rules."""
+
 from cards import Card
 
 class Hand:
@@ -60,7 +62,7 @@ class Hand:
 
     def __str__(self):
         """Return a string with all the cards on the hand."""
-        return ', '.join([card.__str__() for card in self._cards])
+        return ', '.join(str(card) for card in self._cards)
 
 class Punto(Hand):
     """Player(punto) hand of baccarat. Adds the third card check for
@@ -109,7 +111,7 @@ class Banco(Hand):
                     raise TypeError('Punto third card not a Card type object.')
                 if 0 <= self.value <= 2:
                     return True
-                elif 3 <= self.value <= 6:
+                if 3 <= self.value <= 6:
                     if player_third.value in third_card_rules[self.value]:
                         return True
             else:
