@@ -1,0 +1,13 @@
+[MAIN]
+py-version=3.10
+
+[FORMAT]
+max-line-length=100
+
+[DESIGN]
+max-args=5
+max-branches=12
+max-attributes=7
+
+[MESSAGES CONTROL]
+disable=invalid-name

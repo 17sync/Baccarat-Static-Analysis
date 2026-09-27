@@ -1,0 +1,46 @@
+************* Module baccarat-cli
+.baseline-source\baccarat-cli.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\baccarat-cli.py:60:12: W0702: No exception type(s) specified (bare-except)
+.baseline-source\baccarat-cli.py:107:12: W0702: No exception type(s) specified (bare-except)
+.baseline-source\baccarat-cli.py:111:39: E0602: Undefined variable 'GameError' (undefined-variable)
+.baseline-source\baccarat-cli.py:124:12: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+.baseline-source\baccarat-cli.py:186:12: W0702: No exception type(s) specified (bare-except)
+************* Module baccarat-sim
+.baseline-source\baccarat-sim.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\baccarat-sim.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
+.baseline-source\baccarat-sim.py:39:9: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+.baseline-source\baccarat-sim.py:74:12: C0206: Consider iterating with .items() (consider-using-dict-items)
+.baseline-source\baccarat-sim.py:80:8: C0206: Consider iterating with .items() (consider-using-dict-items)
+************* Module cards
+.baseline-source\cards.py:61:0: C0303: Trailing whitespace (trailing-whitespace)
+.baseline-source\cards.py:115:55: C0303: Trailing whitespace (trailing-whitespace)
+.baseline-source\cards.py:115:0: W0311: Bad indentation. Found 19 spaces, expected 20 (bad-indentation)
+.baseline-source\cards.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\cards.py:57:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+.baseline-source\cards.py:53:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+.baseline-source\cards.py:84:8: R1720: Unnecessary "elif" after "raise", remove the leading "el" from "elif" (no-else-raise)
+.baseline-source\cards.py:112:12: W0612: Unused variable 'i' (unused-variable)
+.baseline-source\cards.py:129:12: W0612: Unused variable 'i' (unused-variable)
+************* Module hands
+.baseline-source\hands.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\hands.py:110:16: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+************* Module players
+.baseline-source\players.py:131:0: C0301: Line too long (106/100) (line-too-long)
+.baseline-source\players.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\players.py:20:8: R1720: Unnecessary "elif" after "raise", remove the leading "el" from "elif" (no-else-raise)
+.baseline-source\players.py:133:0: C0115: Missing class docstring (missing-class-docstring)
+************* Module rules
+.baseline-source\rules.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+.baseline-source\rules.py:61:26: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+.baseline-source\rules.py:97:26: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+.baseline-source\rules.py:161:41: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+.baseline-source\rules.py:164:45: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+.baseline-source\rules.py:167:41: C2801: Unnecessarily calls dunder method __str__. Use str built-in function. (unnecessary-dunder-call)
+.baseline-source\rules.py:182:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+.baseline-source\rules.py:280:4: C0116: Missing function or method docstring (missing-function-docstring)
+.baseline-source\rules.py:296:0: C0115: Missing class docstring (missing-class-docstring)
+.baseline-source\rules.py:1:0: W0611: Unused Card imported from cards (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 9.20/10 (previous run: 9.88/10, -0.68)
+
